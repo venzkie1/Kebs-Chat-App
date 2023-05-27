@@ -50,7 +50,7 @@ uploadTask.on(
   );
 
   }catch(err){
-    console.log('Signup Error:', err);
+    // console.log('Signup Error:', err);
     setErr(true);
   }
   };

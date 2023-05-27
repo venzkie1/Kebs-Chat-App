@@ -18,7 +18,7 @@ const Login = () => {
     await signInWithEmailAndPassword(auth, email, password);
     navigate("/");
   }catch(err){
-    console.log('Signup Error:', err);
+    // console.log('Signup Error:', err);
     setErr(true);
   }
   };
