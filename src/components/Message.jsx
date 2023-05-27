@@ -1,15 +1,24 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
+import notifSound from "../audio/notif.mp3"; // Import the audio file
 
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const ref = useRef();
+  const audioRef = useRef(); // Add audioRef useRef
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
+
+    if (message.senderId !== currentUser.uid) {
+      // Play the notification sound
+      audioRef.current.src = notifSound; // Set the audio source
+      audioRef.current.play();
+    }
+
   }, [message]);
   
 
@@ -58,6 +67,7 @@ const Message = ({ message }) => {
         <p>{message.text}</p>
         {message.img && <img src={message.img} alt="" />}
       </div>
+      <audio ref={audioRef} />
     </div>
   );
 };
