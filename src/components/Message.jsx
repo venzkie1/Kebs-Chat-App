@@ -12,8 +12,9 @@ const Message = ({ message }) => {
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
-
+    console.log(message.senderId, currentUser.uid)
     if (message.senderId !== currentUser.uid) {
+      console.log("playing music")
       // Play the notification sound
       audioRef.current.src = notifSound; // Set the audio source
       audioRef.current.play();
